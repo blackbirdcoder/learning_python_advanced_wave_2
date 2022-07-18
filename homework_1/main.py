@@ -1,37 +1,94 @@
-origin = [
-    {"foo": "FOO", "bar": "BAR", "foobar": "fb"},
-    {"foo": "F", "bar": "BAR", "foobar": "fb"},
-    {"foo": "FOO", "bar": "BAR", "foobar": "fb"},
+fixture = [
+    {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+    {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+    {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+    {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+    {"name": "Serhii", "company": "A-Level", "job": "Python Trainer"},
 ]
-
-keys_1 = ["foo", "bar"]
-keys_2 = ["foobar"]
-keys_3 = ["bar", "foobar"]
 
 
 def filter_values(data, keys):
     results = []
+    substance = []
+    stocked = []
     for current_item in data:
-        for current_key in keys:
-            value_item = current_item.get(current_key)
-            if len(results) == 0:
+        substance.append([value for key, value in current_item.items() if key in keys])
+        for current_subject in substance:
+            if (value in current_subject for value in current_item.values()) and current_subject not in stocked:
+                stocked.append(current_subject)
                 results.append(current_item)
-            else:
-                for current_result in results:
-                    value_result = current_result.get(current_key)
-                    if value_result != value_item:
-                        results.append(current_item)
-                    break
     return results
 
 
+fixture = [
+    {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+    {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+    {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+    {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+    {"name": "Serhii", "company": "A-Level", "job": "Python Trainer"},
+]
+
+
+def test_filter_name():
+    test_value = [
+        {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+        {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+    ]
+    assert filter_values(fixture, ["name"]) == test_value
+
+
+def test_filter_company():
+    test_value = [
+        {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+        {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+        {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+        {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+        {"name": "Serhii", "company": "A-Level", "job": "Python Trainer"},
+    ]
+    assert filter_values(fixture, ["name", "company"]) == test_value
+
+
+def test_filter_name_job():
+    test_value = [
+        {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+        {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+        {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+        {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+    ]
+    assert filter_values(fixture, ["name", "job"]) == test_value
+
+
 if __name__ == "__main__":
-    print(filter_values(origin, keys_1))
-    # {'foo': 'FOO', 'bar': 'BAR', 'foobar': 'fb'}, {'foo': 'F', 'bar': 'BAR', 'foobar': 'fb'}]
-    print("--------------")
-    print(filter_values(origin, keys_2))
-    # [{'foo': 'FOO', 'bar': 'BAR', 'foobar': 'fb'}]
-    print("--------------")
-    print(filter_values(origin, keys_3))
-    # [{'foo': 'FOO', 'bar': 'BAR', 'foobar': 'fb'}]
-    print("--------------")
+    def test_filter_name():
+        test_value = [
+            {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+            {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+        ]
+        assert filter_values(fixture, ["name"]) == test_value
+
+
+    def test_filter_company():
+        test_value = [
+            {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+            {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+            {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+            {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+            {"name": "Serhii", "company": "A-Level", "job": "Python Trainer"},
+        ]
+        assert filter_values(fixture, ["name", "company"]) == test_value
+
+
+    def test_filter_name_job():
+        test_value = [
+            {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+            {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+            {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+            {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+        ]
+        assert filter_values(fixture, ["name", "job"]) == test_value
+
+
+if __name__ == "__main__":
+    test_filter_name()
+    test_filter_company()
+    test_filter_name_job()

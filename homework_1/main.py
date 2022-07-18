@@ -10,14 +10,15 @@ keys_3 = ["bar", "foobar"]
 
 
 def filter_values(data, keys):
-    temp, results = [], []
+    results = []
+    substance = []
+    stocked = []
     for current_item in data:
-        for current_key in keys:
-            current_value = current_item.get(current_key)
-            if current_value not in temp:
-                temp.append(current_value)
+        substance += [value for key, value in current_item.items() if key in keys if value not in substance]
+        for current_subject in substance:
+            if current_subject in current_item.values() and current_subject not in stocked:
+                stocked += substance
                 results.append(current_item)
-            break
     return results
 
 

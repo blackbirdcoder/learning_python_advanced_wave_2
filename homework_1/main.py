@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 origin = [
     {"foo": "FOO", "bar": "BAR", "foobar": "fb"},
     {"foo": "F", "bar": "BAR", "foobar": "fb"},
@@ -17,6 +18,8 @@ fixture = [
 ]
 
 
+=======
+>>>>>>> 6e515aa328202192a82a838c604385e7d39d0456
 def filter_values(data, keys):
     results = []
     substance = []
@@ -30,7 +33,46 @@ def filter_values(data, keys):
     return results
 
 
+fixture = [
+    {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+    {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+    {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+    {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+    {"name": "Serhii", "company": "A-Level", "job": "Python Trainer"},
+]
+
+
+def test_filter_name():
+    test_value = [
+        {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+        {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+    ]
+    assert filter_values(fixture, ["name"]) == test_value
+
+
+def test_filter_company():
+    test_value = [
+        {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+        {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+        {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+        {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+        {"name": "Serhii", "company": "A-Level", "job": "Python Trainer"},
+    ]
+    assert filter_values(fixture, ["name", "company"]) == test_value
+
+
+def test_filter_name_job():
+    test_value = [
+        {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
+        {"name": "Serhii", "company": "Hillel", "job": "Python Trainer"},
+        {"name": "Vlad", "company": "SoftServe", "job": "Release Manager"},
+        {"name": "Vlad", "company": "A-Level", "job": "Python Trainer"},
+    ]
+    assert filter_values(fixture, ["name", "job"]) == test_value
+
+
 if __name__ == "__main__":
+<<<<<<< HEAD
     def test_filter_name():
         test_value = [
             {"name": "Serhii", "company": "SoftServe", "job": "Software Engineer"},
@@ -64,3 +106,8 @@ if __name__ == "__main__":
         test_filter_name()
         test_filter_company()
         test_filter_name_job()
+=======
+    test_filter_name()
+    test_filter_company()
+    test_filter_name_job()
+>>>>>>> 6e515aa328202192a82a838c604385e7d39d0456

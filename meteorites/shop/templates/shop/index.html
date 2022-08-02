@@ -1,0 +1,36 @@
+{% extends '_base.html' %}
+{% block content %}
+    <div class="box-heading">
+        <h1 class="heading">Meteorites Shop</h1>
+    </div>
+    <div class="box-product">
+        <div class="grid">
+            {% for value in products %}
+                <div class="grid__item width-1-3">
+                    <div class="card">
+                        <figure class="card__box-picture">
+                            {% load static %}
+                            <img src="{% static 'images/'%}{{value.img}}.jpg" alt="picture">
+                        </figure>
+                        <div class="card__box-content-middl">
+                            <p class="card__txt">{{ value.desc}}</p>
+                            <ul class="card__list list">
+                                <li class="list__item"><span class="list__item_accent">Weight:</span> {{ value.desc }}</li>
+                                <li class="list__item"><span class="list__item_accent">Dim:</span> {{ value.dim }}</li>
+                                <li class="list__item"><span class="list__item_accent">Location:</span> {{ value.location }}</li>
+                            </ul>
+                        </div>
+                        <div class="card__box-content-bottom">
+                            <p class="card__price">
+                                <span class="card__price_accent">Price:</span> <span class="card__price_old">777000</span> <span class="card__price_new" >{{ value.price }}$</span>
+                            </p>
+                            <div class="crad__box-button">
+                                <a href="product/{{value.id}}" class="btn-link">Buy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

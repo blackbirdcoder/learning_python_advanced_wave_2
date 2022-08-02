@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% block content %}
+<h1>Buy goods</h1>
+<table border="1" cellpadding="1">
+	<tbody>
+		<tr>
+			<td>Description</td>
+			<td>Diameter</td>
+			<td>Weight</td>
+			<td>Location</td>
+		</tr>
+		<tr>
+			<td>{{ desc }}</td>
+			<td>{{ dim }}</td>
+			<td>{{ weight }}</td>
+			<td>{{ location }}</td>
+		</tr>
+	</tbody>
+</table>
+<button disabled>Buy</button>
+{% endblock %}

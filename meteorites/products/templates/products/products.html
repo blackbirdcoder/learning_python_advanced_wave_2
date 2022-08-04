@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<div class="box-heading">
+	<h1 class="heading">Buy goods</h1>
+</div>
+<div class="product">
+	<div class="grid">
+		<div class="grid__item width-1-2">
+			<figure class="product__box-picture">
+				<img src="{% static 'images/'%}{{img}}.jpg" alt="picture">
+			</figure>
+		</div>
+		<div class="grid__item width-1-2">
+			<div class="product__content-base">
+				<div class="product__box-title">
+					<h2 class="product__title">Characteristics</h2>
+				</div>
+				<ul class="product__list-desc list-desc">
+					<li class="list-desc__item">{{ desc }}</li>
+					<li class="list-desc__item">{{ dim }}</li>
+					<li class="list-desc__item">{{ weight }}</li>
+					<li class="list-desc__item">{{ location }}</li>
+				</ul>
+				<div class="product__price">
+					<span class="product__txt-accent">{{ price }}$</span>
+				</div>
+				<div class="product__box_button">
+					<button disabled class="btn-buy">Buy</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

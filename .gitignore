@@ -3,5 +3,5 @@ __pycache__
 /venv/
 /env/
 .mypy_cache
-meteorites/db.sqlite3
-*.sqlite3
+./*.sqlite3
+db.sqlite3

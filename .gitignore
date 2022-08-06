@@ -3,5 +3,4 @@ __pycache__
 /venv/
 /env/
 .mypy_cache
-./*.sqlite3
 db.sqlite3

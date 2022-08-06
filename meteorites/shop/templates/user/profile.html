@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% block content %}
+    <div class="box-heading">
+        <h1>Profile user: {{ lastname }}</h1>
+    </div>
+    <div class="box-table">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="table__heading">First name</td>
+                    <td class="table__heading">Last name</td>
+                    <td class="table__heading">Credit</td>
+                </tr>
+                <tr>
+                    <td class="table__content">{{ firstname }}</td>
+                    <td class="table__content">{{ lastname }}</td>
+                    <td class="table__content">{{ credit }}$</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

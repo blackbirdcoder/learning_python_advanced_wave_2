@@ -30,3 +30,10 @@ context = {
             }
         ]
     }
+
+userdata = {
+        'title': 'Profile',
+        'firstname': 'Richard',
+        'lastname': 'Stallman',
+        'credit': 10000000,
+    }

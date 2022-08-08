@@ -2,6 +2,29 @@
     <li class="nav-list__item">
         <a class="nav-list__txt" href="{% url 'main' %}">Main</a>
     </li>
+    {% if title == 'Main' %}
+    <li class="nav-list__item nav-list__item_theme_dark nav-list__item_width_full">
+        <form action="" method="post" class="form-filter">
+            {% csrf_token %}
+            <div class="form-filter__box-fields">
+                <select name="country" id="selectСountry" class="select">
+                    <option value="0" selected>Choose country</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="Western Sahara">Western Sahara</option>
+                </select>
+                <select name="material_id" id="selectMaterialId" class="select">
+                    <option value="0" selected>Choose material</option>
+                    <option value="1">Iron meteorite</option>
+                    <option value="2">Stone meteorite</option>
+                    <option value="3">Other meteorite</option>
+                    <input type="submit" value="Filter" class="form-filter-button">
+                </select>
+            </div>
+        </form>
+    </li>
+    {% endif %}
     <li class="nav-list__item">
         <a class="nav-list__txt" href="{% url 'profile' %}">Profile</a>
     </li>

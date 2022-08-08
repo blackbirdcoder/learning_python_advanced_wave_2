@@ -4,3 +4,6 @@ __pycache__
 /env/
 .mypy_cache
 db.sqlite3
+*.bak
+*.sql
+*.sh

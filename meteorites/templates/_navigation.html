@@ -4,7 +4,7 @@
     </li>
     {% if title == 'Main' %}
     <li class="nav-list__item nav-list__item_theme_dark nav-list__item_width_full">
-        <form action="" method="post" class="form-filter">
+        <form action="" method="get" class="form-filter">
             {% csrf_token %}
             <div class="form-filter__box-fields">
                 <select name="country" id="selectСountry" class="select">
@@ -19,8 +19,8 @@
                     <option value="1">Iron meteorite</option>
                     <option value="2">Stone meteorite</option>
                     <option value="3">Other meteorite</option>
-                    <input type="submit" value="Filter" class="form-filter-button">
                 </select>
+                <input type="submit" value="Filter" class="form-filter-button">
             </div>
         </form>
     </li>

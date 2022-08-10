@@ -8,14 +8,14 @@ def main(request):
         'title': 'Main',
         'products': Product.objects.all()
     }
-    if request.method == 'POST':
-        country = request.POST.get('country')
-        material_id = request.POST.get('material_id')
-        if country != "0":
+    if request.method == 'GET':
+        country = request.GET.get('country', '0')
+        material_id = request.GET.get('material_id', '0')
+        if country != '0':
             context['products'] = Product.objects.filter(location=country)
-        if material_id != "0":
+        if material_id != '0':
             context['products'] = Product.objects.filter(category_id=material_id)
-        if country != "0" and material_id != "0":
+        if country != '0' and material_id != '0':
             context['products'] = Product.objects.filter(location=country, category_id=material_id)
     return render(request, 'shop/main.html', context)
 

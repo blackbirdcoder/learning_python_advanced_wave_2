@@ -22,5 +22,5 @@ urlpatterns = [
     path('', main, name='main'),
     path('admin/', admin.site.urls),
     path('profile/', profile, name='profile'),
-    path('product/<int:num>', product, name='product')
+    path('product/<slug:slug>', product, name='product')
 ]

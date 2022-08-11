@@ -1,5 +1,7 @@
 /* base */
-* {
+*,
+*:before,
+*:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -17,14 +19,14 @@ ul {
     align-content: center;
     justify-content: space-around;
 }
-.nav-list__item {
+.nav-list__item, .form-filter-button {
     width: 130px;
     height: 100%;
     text-align: center;
     background-color: #cb4b16;
     box-shadow: 0px 3px 5px 1px #353535;
 }
-.nav-list__txt {
+.nav-list__txt, .form-filter-button {
     padding-top: 12px;
     display: block;
     width: 100%;
@@ -34,11 +36,19 @@ ul {
     text-decoration: none;
     color: #fdf6e3;
 }
-.nav-list__txt:hover, .btn-link:hover {
+.nav-list__txt:hover, 
+.btn-link:hover,
+.form-filter-button:hover {
     background-color:  #ff530a;
 }
 
+.nav-list__item_theme_dark {
+    background-color: #073642;
+}
 
+.nav-list__item_width_full {
+    width: 60%;
+}
 /* --- */
 
 
@@ -96,10 +106,13 @@ ul {
     margin: 0;
     padding: 10px;
     max-width: 100%;
+    height: 50%;
 }
 
 .card__box-picture > img, .product__box-picture > img {
     width: 100%;
+    height: 100%;
+    object-fit: fill;
 }
 
 .card__txt {
@@ -107,10 +120,20 @@ ul {
     font-weight: bold;
     text-align: center;
     line-height: 30px;
+    height: 55px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: break-spaces;
 }
 
-.list__item_accent, .card__price_accent {
+.list__item_accent, 
+.card__price_accent, 
+.list-desc__item_accent {
     color: #dc322f;
+    font-weight: bold;
+}
+.list__item_info {
+    color: #e2b735;
     font-weight: bold;
 }
 
@@ -120,9 +143,47 @@ ul {
     overflow: hidden;
     white-space: nowrap;
 }
+.list-desc__item_description {
+    height: 100px;
+    line-height: 25px;
+    overflow-x: auto;
+}
+.box-product_position {
+    position: relative;
+}
+
+
+.card_disabled::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background-color: rgb(0 0 0 / 28%);
+    z-index: 9000;
+}
+.card_disabled::before {
+    content: 'out of stock';
+    font-size: 40px;
+    position: absolute;
+    color: #ff017c;
+    text-transform: uppercase;
+    z-index: 10000;
+    display: flex;
+    align-content: center;
+    padding-top: 150px;
+    width: 96%;
+    justify-content: center;
+    text-shadow: -1px 5px 1px black;
+}
+.card_disabled > .card {
+    position: relative;
+    /* z-index: -1000; */
+}
 
 .card__box-content-bottom {
-    margin-top: 30px;
+    margin-top: 10px;
     border: 1px solid #cb4b16;
     height: 100px;
 }
@@ -197,6 +258,7 @@ ul {
     margin-top: 40px;
     background-color: #073642c4;
     border: 2px solid #cb4b16;
+    height: 490px;
 }    
 
 .product__content-base {
@@ -214,15 +276,17 @@ ul {
 .list-desc {
     font-family: monospace;
     font-size: 18px;
-    line-height: 40px;
+    line-height: 30px;
 }
 
 .product__box-picture {
-    width: 90%;
+    /* width: 90%; */
+    width: 480px;
+    overflow: hidden;
 }
 
 .product__price {
-    margin-top: 20px;
+    margin-top: 5px;
     text-align: center;
 }
 
@@ -263,3 +327,59 @@ button:disabled:hover{
   color: #666666;
   cursor: default;
 }
+
+.product__list-desc {
+    margin-right: 20px;
+}
+
+.product__box-picture_height_full {
+    height: 100%;
+}
+
+/* filter */
+.form-filter__box-fields {
+    padding-top: 7px;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.select {
+    margin: 0;
+    background-color: #cb4b16;
+    border: 0;
+    width: 30%;
+    height: 35px;
+    font-family: monospace;
+    font-size: 18px;
+    cursor: pointer;
+    line-height: inherit;
+    color: #fdf6e3;
+}
+
+.select:focus {
+    outline: none;
+}
+
+.form-filter-button {
+    width: 20%;
+    border: 0;
+    height: 36px;
+    padding: 0;
+    font-size: 17px;
+    text-shadow: 0px 1px 3px #383838;
+}
+.form-filter-button:hover {
+    cursor: pointer;
+}
+
+/* notifi */
+.notification {
+    margin-top: 20px;
+    font-size: 25px;
+    color: #ff017c;
+    text-transform: uppercase;
+    font-family: monospace;
+    font-weight: bold;
+}
+

@@ -1,0 +1,65 @@
+{% extends '_base.html' %}
+{% block content %}
+    <div class="box-heading">
+        <h1 class="heading">User Authorization</h1>
+    </div>
+    <div class="registration">
+        <div class="grid">
+            <div class="grid__item width-1-2">
+                <div class="tab">
+                    <button class="tablinks button-tab" onclick="openTabs(event, 'registration')">Registration</button>
+                    <button class="tablinks button-tab active" onclick="openTabs(event, 'login')">login</button>
+                </div>
+                <div id="registration" class="registration__content registration__tab-registration tabcontent" style="display: none;">
+                    <div class="registration__box-form-registration">
+                        <form action="" method="POST" class="form-registration form">
+                            <div class="form__header">
+                                <span class="form__title">Join us</span>
+                                <span class="form__notification {{ request.session.class }}"> {{ request.session.notification }}</span>
+                            </div>
+                            <div class="form__group">
+                                <input type="hidden" name="command"  value="registration" required>
+                                {% csrf_token %}
+                                {% include "_inputs_username.html" with name="username_reg" %}
+                                {% include "_inputs_fullname.html" %}
+                                {% include "_inputs_password.html" with name="reg" required="required" %}
+                            </div>
+                            <div class="form__footer">
+                                <div class="form__box-button">
+                                    <input class="form__button" type="submit" name="registration" value="Registration">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+               </div>
+                <div id="login" class="registration__tab-login tabcontent registration__content" style="display: block;">
+                    <div class="registration__box-form-login">
+                        <form action="" method="POST" class="form-registration form">
+                            <div class="form__header">
+                                <span class="form__title">Welcome to</span>
+                                <span class="form__notification {{ request.session.class }}"> {{ request.session.notification }}</span>
+                            </div>
+                            <div class="form__group">
+                                <input type="hidden" name="command"  value="login" required>
+                                {% csrf_token %}
+                                {% include "_inputs_username.html" with name="username_log"%}
+                                {% include "_inputs_password.html" with name="log" status="none;" %}
+                            </div>
+                            <div class="form__footer">
+                                <div class="form__box-button">
+                                    <input class="form__button" type="submit" name="login" value="Login">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="grid__item width-1-2">
+                <div class="registration__box-information">
+                    <h2 class="registration__title">Welcome</h2>
+                    <h3 class="registration__subtitle">Become our number one customer</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -25,7 +25,17 @@
         </form>
     </li>
     {% endif %}
+    {% if user.is_authenticated and request.path != "/profile/" %}
     <li class="nav-list__item">
         <a class="nav-list__txt" href="{% url 'profile' %}">Profile</a>
     </li>
+    {% elif request.path == "/profile/" %}
+    <li class="nav-list__item">
+        <a class="nav-list__txt" href="{% url 'logout' %}">logout</a>
+    </li>
+    {% else %}
+    <li class="nav-list__item">
+        <a class="nav-list__txt" href="{% url 'authorization' %}">Login</a>
+    </li>
+    {% endif %}
 </ul>

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from shop.views import main, product
-from users.views import profile, user_authorization, user_exit
+from users.views import profile, user_exit, custom_registration, custom_login
 
 
 urlpatterns = [
@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('logout/', user_exit, name='logout'),
     path('profile/', profile, name='profile'),
+    path('login/', custom_login, name='login'),
     path('product/<slug:slug>', product, name='product'),
-    path('authorization/', user_authorization, name='authorization'),
+    path('registration/', custom_registration, name='registration'),
 ]

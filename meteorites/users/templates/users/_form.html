@@ -1,0 +1,30 @@
+<form action="" method="POST" class="form">
+    <div class="form__header">
+        <span class="form__title">{{ form_title }}</span>
+    </div>
+    <div class="form__group">
+        {% csrf_token %}
+        {% if status == "registration" %}
+            <label for="username"><b>*Username:</b></label>
+            <input type="text" placeholder="Enter Username" name="username" id="username" required>
+            <label for="firstname"><b>*First name:</b></label>
+            <input type="text" placeholder="Enter first name" name="firstname" id="firstname" required>
+            <label for="lastname"><b>*Last name:</b></label>
+            <input type="text" placeholder="Enter last name" name="lastname" id="lastname" required>
+            <label for="password_one"><b>*Password:</b></label>
+            <input type="password" placeholder="Enter password" name="password_one" id="password_one" required>
+            <label for="password_two"><b>*Password:</b></label>
+            <input type="password" placeholder="Enter repeat password" name="password_two" id="password_two" required>
+        {% elif status == "login" %}
+            <label for="username"><b>*Username:</b></label>
+            <input type="text" placeholder="Enter Username" name="username" id="username" required>
+            <label for="password_one"><b>*Password:</b></label>
+            <input type="password" placeholder="Enter password" name="password_one" id="password_one" required>
+        {% endif %}
+    </div>
+    <div class="form__footer">
+        <div class="form__box-button">
+            <input class="form__button" type="submit" name="submit" value="{{ btn_name }}">
+        </div>
+    </div>
+</form>

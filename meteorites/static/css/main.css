@@ -95,7 +95,8 @@ ul {
 }
 
 .card, 
-.registration {
+.registration,
+.login {
     padding: 20px;
     width: 100%;
     height: 650px;
@@ -395,6 +396,8 @@ button:disabled:hover{
     height: 550px;
 }
 
+
+
 .tab {
     margin-top: 50px;
     padding-bottom: 10px;
@@ -440,12 +443,13 @@ input {
 /* Form */
 
 .form {
-    margin-top: 20px;
-    min-height: 350px;
-    position: relative;
+    background-color: #96563b; 
+    padding: 10px;
+    box-shadow: inset 0px 0px 0px 5px #d34b24;
 }
 .form__header {
     text-align: center;
+    margin-top: 30px;
 }
 .form__title {
     font-size: 28px;
@@ -498,6 +502,7 @@ input {
 
 .form__box-button {
     margin-top: 10px;
+    margin-bottom: 30px;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -523,6 +528,10 @@ input {
      color: #cccccc;
 }
 
+.form__footer {
+    margin-top: 30px;
+}
+
 .registration__box-information {
     margin-top: 30%;
 }
@@ -542,4 +551,23 @@ input {
     text-align: center;
     color: #cb4b16;
     text-shadow: -1px 1px #cade12;
+}
+
+.registration__box-form-registration,
+.login__box-form-login {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.registration__box-content {
+    margin-top: 15px;
+}
+
+.login__box-content {
+    margin-top: 70px;
+}
+
+.login {
+    margin-top: 40px;
+    height: 526px;
 }

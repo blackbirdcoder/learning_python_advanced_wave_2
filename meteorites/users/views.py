@@ -5,50 +5,44 @@ from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 
 
-def user_authorization(request):
+def custom_registration(request):
     if request.method == 'POST':
-        if request.POST['command'] == 'registration':
-            current_username = request.POST['username_reg']
-            if User.objects.filter(username=current_username):
-                request.session['notification'] = 'User exists'
-                request.session['class'] = 'error'
-                return HttpResponseRedirect(reverse_lazy('authorization'))
-            password_one = request.POST['password_one_reg']
-            password_two = request.POST['password_two_reg']
-            if password_one == password_two:
-                User.objects.create_user(
-                    username=current_username,
-                    email=None,
-                    password=password_one,
-                    first_name=request.POST['firstname'],
-                    last_name=request.POST['lastname']
-                )
-                request.session['notification'] = 'Successfully'
-                request.session['class'] = 'successfully'
-                return HttpResponseRedirect(reverse_lazy('authorization'))
-        if request.POST['command'] == 'login':
-            user = authenticate(
-                username=request.POST['username_log'],
-                password=request.POST['password_one_log']
+        current_username = request.POST['username']
+        if User.objects.filter(username=current_username):
+            request.session['notification'] = 'User exists'
+            return HttpResponseRedirect(reverse_lazy('registration'))
+        password_one = request.POST['password_one']
+        password_two = request.POST['password_two']
+        if password_one == password_two:
+            User.objects.create_user(
+                username=current_username,
+                email=None,
+                password=password_one,
+                first_name=request.POST['firstname'],
+                last_name=request.POST['lastname']
             )
-            if user is None:
-                request.session['notification'] = 'No user'
-                return HttpResponseRedirect(reverse_lazy('authorization'))
-            login(request, user)
-            return HttpResponseRedirect(reverse_lazy('main'))
-    return render(request, 'users/authorization.html')
+            return HttpResponseRedirect(reverse_lazy('login'))
+    return render(request, 'users/registration.html')
+
+
+def custom_login(request):
+    if request.method == 'POST':
+        user = authenticate(
+            username=request.POST['username'],
+            password=request.POST['password_one']
+        )
+        if user is None:
+            return HttpResponseRedirect(reverse_lazy('login'))
+        login(request, user)
+        return HttpResponseRedirect(reverse_lazy('main'))
+    return render(request, 'users/login.html')
 
 
 def profile(request):
     context = {
         'title': 'Profile',
-        'firstname': request.user.first_name,
-        'lastname': request.user.last_name,
         'credit': 10000000,
-        'super': False
     }
-    if request.user.is_superuser:
-        context['super'] = True
     if request.user.is_authenticated:
         return render(request, 'users/profile.html', context)
     return HttpResponseRedirect(reverse_lazy('authorization'))

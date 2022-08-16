@@ -3,7 +3,7 @@
     <div class="box-heading">
         <h1>Profile user: {{ user }}</h1>
     </div>
-    {% if not request.user.is_superuser %}
+    {% if not user.is_superuser %}
     <div class="box-table">
         <table class="table">
             <tbody>
@@ -13,8 +13,8 @@
                     <td class="table__heading">Credit</td>
                 </tr>
                 <tr>
-                    <td class="table__content">{{ request.user.first_name }}</td>
-                    <td class="table__content">{{ request.user.last_name }}</td>
+                    <td class="table__content">{{ user.first_name }}</td>
+                    <td class="table__content">{{ user.last_name }}</td>
                     <td class="table__content">{{ credit }}$</td>
                 </tr>
             </tbody>

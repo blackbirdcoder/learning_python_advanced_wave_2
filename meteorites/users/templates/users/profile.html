@@ -1,8 +1,9 @@
-{% extends '_base.html' %}
+{% extends 'base.html' %}
 {% block content %}
     <div class="box-heading">
-        <h1>Profile user: {{ lastname }}</h1>
+        <h1>Profile user: {{ user }}</h1>
     </div>
+    {% if not user.is_superuser %}
     <div class="box-table">
         <table class="table">
             <tbody>
@@ -12,11 +13,12 @@
                     <td class="table__heading">Credit</td>
                 </tr>
                 <tr>
-                    <td class="table__content">{{ firstname }}</td>
-                    <td class="table__content">{{ lastname }}</td>
+                    <td class="table__content">{{ user.first_name }}</td>
+                    <td class="table__content">{{ user.last_name }}</td>
                     <td class="table__content">{{ credit }}$</td>
                 </tr>
             </tbody>
         </table>
     </div>
+    {% endif%}
 {% endblock %}

@@ -29,13 +29,3 @@ def product(request, slug):
         return render(request, 'product/product.html', context)
     except Product.DoesNotExist:
         raise Http404('Not found')
-
-
-def profile(request):
-    context = {
-        'title': 'Profile',
-        'firstname': 'Richard',
-        'lastname': 'Stallman',
-        'credit': 10000000,
-    }
-    return render(request, 'user/profile.html', context)

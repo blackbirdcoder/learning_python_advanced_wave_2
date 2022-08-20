@@ -1,9 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from .forms import RegistrationForm, LoginForm, ProfileEditingNameForm, ProfileEditingEmail
-from .utils import Manager
 
 
 def custom_registration(request):
@@ -12,9 +11,11 @@ def custom_registration(request):
         'form': RegistrationForm(),
         'button_name': 'Registration'
     }
-    manager = Manager(request, context, RegistrationForm)
-    if manager.executor(manager.create):
-        return HttpResponseRedirect(reverse_lazy('login'))
+    if request.method == 'POST':
+        context['form'] = RegistrationForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].create_user()
+            return HttpResponseRedirect(reverse_lazy('login'))
     return render(request, 'users/form.html', context)
 
 
@@ -24,9 +25,11 @@ def custom_login(request):
         'form': LoginForm(),
         'button_name': 'Login'
     }
-    manager = Manager(request, context, LoginForm)
-    if manager.executor(manager.user_login):
-        return HttpResponseRedirect(reverse_lazy('main'))
+    if request.method == 'POST':
+        context['form'] = LoginForm(request.POST)
+        if context['form'].is_valid():
+            login(request, context['form'].user)
+            return HttpResponseRedirect(reverse_lazy('main'))
     return render(request, 'users/form.html', context)
 
 
@@ -36,9 +39,11 @@ def profile_editing_names(request):
         'form': ProfileEditingNameForm(),
         'button_name': 'Change'
     }
-    manager = Manager(request, context, ProfileEditingNameForm)
-    if manager.executor(manager.save):
-        return HttpResponseRedirect(reverse_lazy('profile'))
+    if request.method == 'POST':
+        context['form'] = ProfileEditingNameForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save(request.user)
+            return HttpResponseRedirect(reverse_lazy('profile'))
     return render(request, 'users/form.html', context)
 
 
@@ -48,9 +53,11 @@ def profile_editing_email(request):
         'form': ProfileEditingEmail(),
         'button_name': 'Change'
     }
-    manager = Manager(request, context, ProfileEditingEmail)
-    if manager.executor(manager.save):
-        return HttpResponseRedirect(reverse_lazy('profile'))
+    if request.method == 'POST':
+        context['form'] = ProfileEditingEmail(request.POST)
+        if context['form'].is_valid():
+            context['form'].save(request.user)
+            return HttpResponseRedirect(reverse_lazy('profile'))
     return render(request, 'users/form.html', context)
 
 

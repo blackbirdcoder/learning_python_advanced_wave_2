@@ -33,6 +33,12 @@
     <li class="nav-list__item">
         <a class="nav-list__txt" href="{% url 'logout' %}">logout</a>
     </li>
+    <li class="nav-list__item">
+        <a class="nav-list__txt" href="{% url 'editing_names' %}">Edit names</a>
+    </li>
+    <li class="nav-list__item">
+        <a class="nav-list__txt" href="{% url 'editing_email' %}">Edit email</a>
+    </li>
     {% else %}
     <li class="nav-list__item">
         <a class="nav-list__txt" href="{% url 'registration' %}">Regist</a>

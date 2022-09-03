@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="box-heading">
+    <h1 class="heading">{{ heading }}</h1>
+</div>
+<div class="registration">
+    <div class="registration__box-content">
+        <div class="registration__box-form-registration">
+<!--            {% include "users/_form.html.bak" with form_title="Join us" status="registration" btn_name="Registration" %}-->
+            <hr>
+            <form action="" method="post">
+                {% csrf_token %}
+                <ul class="form__group">
+                    {{ form.as_ul }}
+                </ul>
+                <div class="form__footer">
+                    <div class="form__box-button">
+                        <input class="form__button" type="submit" name="submit" value="{{ button_name }}">
+                    </div>
+                </div>
+            </form>
+            <hr>
+        </div>
+    </div>
+</div>
+{% endblock %}
